@@ -3,9 +3,10 @@
 import 'package:hospital_1/screens/bottom_bar_widget.dart';
 import 'package:hospital_1/screens/reset_password_screen.dart';
 import 'package:flutter/material.dart';
-import 'profile_screen.dart'; // Import the profile screen
+import 'profile_screen.dart';
 import 'about_us_screen.dart';
 import 'patient_details_screen.dart';
+import 'login_screen.dart'; // Import Login screen
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key}); // Added const constructor
@@ -23,12 +24,9 @@ class SettingsScreen extends StatelessWidget {
             leading: const Icon(Icons.person),
             title: const Text('Profile'),
             onTap: () {
-              // Navigate to Profile Screen when tapped
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        const ProfileScreen()), // Ensure const constructor
+                MaterialPageRoute(builder: (context) => const ProfileScreen()),
               );
             },
           ),
@@ -39,8 +37,7 @@ class SettingsScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        const ResetPasswordScreen()), // Ensure const constructor
+                    builder: (context) => const ResetPasswordScreen()),
               );
             },
           ),
@@ -50,9 +47,7 @@ class SettingsScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        const AboutUsScreen()), // Ensure const constructor
+                MaterialPageRoute(builder: (context) => const AboutUsScreen()),
               );
             },
           ),
@@ -63,14 +58,56 @@ class SettingsScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        const PatientDetailsScreen()), // Ensure const constructor
+                    builder: (context) => const PatientDetailsScreen()),
               );
+            },
+          ),
+
+          /// ---------------- LOGOUT BUTTON -----------------
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.logout, color: Colors.red),
+            title: const Text(
+              'Logout',
+              style: TextStyle(color: Colors.red),
+            ),
+            onTap: () {
+              _showLogoutDialog(context);
             },
           ),
         ],
       ),
       bottomNavigationBar: const BottomBarWidget(currentIndex: 3),
+    );
+  }
+
+  // CONFIRMATION DIALOG
+  void _showLogoutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Logout"),
+        content: const Text("Are you sure you want to logout?"),
+        actions: [
+          TextButton(
+            child: const Text("Cancel"),
+            onPressed: () => Navigator.pop(context),
+          ),
+          TextButton(
+            child: const Text(
+              "Logout",
+              style: TextStyle(color: Colors.red),
+            ),
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+                (route) => false, // Remove all previous screens
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }
