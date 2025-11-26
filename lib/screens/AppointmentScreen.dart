@@ -1,16 +1,6 @@
 import 'package:hospital_1/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-// Import the detail page
-
-// class AppointmentApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: AppointmentScreen(),
-//     );
-//   }
-// }
 
 class AppointmentScreen extends StatefulWidget {
   const AppointmentScreen({super.key});
@@ -157,8 +147,10 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Available Time',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+        const Text(
+          'Available Time',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
         SizedBox(height: screenWidth * 0.02),
         Wrap(
           spacing: screenWidth * 0.02,
@@ -218,8 +210,10 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Reminder Me Before',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+        const Text(
+          'Reminder Me Before',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
         SizedBox(height: screenWidth * 0.02),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -261,7 +255,22 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     return Center(
       child: ElevatedButton(
         onPressed: () {
-          // Handle confirmation action
+          // Show thank you message
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Thank you! Your appointment is confirmed.'),
+              duration: Duration(seconds: 2),
+            ),
+          );
+
+          // Redirect to HomePage after a short delay
+          Future.delayed(const Duration(seconds: 2), () {
+            if (!mounted) return; // safety check
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const HomePage()),
+            );
+          });
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.teal,
