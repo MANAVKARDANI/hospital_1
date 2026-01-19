@@ -1,16 +1,28 @@
-# hospital_1
+# 🏥 Hospital Management App
 
-A new Flutter project.
+A simple **Hospital Management Mobile Application** built using **Flutter**.  
+This app demonstrates basic hospital workflows with a clean and responsive UI.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features
+- Doctor information display  
+- Patient details management  
+- Appointment interface  
+- Clean and responsive UI  
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🛠️ Tech Stack
+- Flutter  
+- Dart  
+- Material Design  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 🚀 Run Locally
+```bash
+git clone https://github.com/your-username/hospital_1.git
+cd hospital_1
+flutter pub get
+flutter run
